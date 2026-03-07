@@ -1,1 +1,19 @@
 blog.html
+<h1>Study Abroad Blog</h1>
+
+<div id="blog"></div>
+
+<script>
+async function loadBlog(){
+
+const res = await fetch("/.netlify/functions/blog-generator");
+
+const data = await res.json();
+
+document.getElementById("blog").innerText =
+data.candidates?.[0]?.content?.parts?.[0]?.text || "Loading article...";
+
+}
+
+loadBlog();
+</script>
